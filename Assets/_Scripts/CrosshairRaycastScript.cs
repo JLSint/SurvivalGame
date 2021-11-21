@@ -33,9 +33,12 @@ public class CrosshairRaycastScript : MonoBehaviour
             Debug.Log("Hit " + hit.transform.gameObject);
 
             ItemBreak item = hit.transform.GetComponent<ItemBreak>();
-            if(item != null)
+            if(item.gameObject.tag == "Resource")
             {
                 item.TakeDamage(damage);
+            } else if(item.gameObject.tag != null)
+            {
+
             }
         }
     }

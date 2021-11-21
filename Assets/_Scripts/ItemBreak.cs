@@ -5,9 +5,44 @@ using UnityEngine;
 public class ItemBreak : MonoBehaviour
 {
     public GameObject droppedItemPrefab;
-    float health = 100f;
+    float health;
     public float currentHealth;
+    float drops;
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        //setting some variables
+        switch (this.gameObject.name)
+        {
+            case "RockNode":
+                drops = Random.Range(2, 4);
+                health = 100f;
+                break;
+            case "Tree":
+                drops = Random.Range(3, 6);
+                health = 70f;
+                break;
+            case "CopperNode":
+                drops = Random.Range(1, 4);
+                health = 145f;
+                break;
+            case "GoldNode":
+                drops = Random.Range(1, 3);
+                health = 135f;
+                break;
+            case "DiamondNode":
+                drops = 1;
+                health = 200f;
+                break;
+            default:
+                drops = 0;
+                health = 100f;
+                break;
+        }
+        
+        currentHealth = health;
+    }
     public void TakeDamage(float amount)
     {
         currentHealth -= amount;
@@ -19,18 +54,12 @@ public class ItemBreak : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("block broken");
-        Destroy(this.gameObject);
+        Debug.Log("Resource broken");
+        for(float i = 1; i <= drops; i++)
+        {
+            Instantiate<GameObject>(droppedItemPrefab, transform.position, transform.rotation);
+        }
+        this.gameObject.SetActive(false);
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        currentHealth = health;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 }
