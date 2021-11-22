@@ -17,7 +17,7 @@ public class DroppedItem : MonoBehaviour
                 itemName = "Rock Shard";
                 break;
             case "Wood(Clone)":
-                itemName = "Bark";
+                itemName = "Wood";
                 break;
             case "CopperOre(Clone)":
                 itemName = "Copper Ore";

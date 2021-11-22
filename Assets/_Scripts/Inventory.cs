@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
     public Dictionary<string, int> inventoryDictionary = new Dictionary<string, int>();
+    public GameObject inventoryScreen;
+    public GameObject inventoryText;
+    public static bool gameIsPaused;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        inventoryScreen.SetActive(false);
     }
 
     // Update is called once per frame
@@ -17,9 +21,23 @@ public class Inventory : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            foreach(string item in inventoryDictionary.Keys)
+            if (!gameIsPaused)
             {
-                Debug.Log(item +  inventoryDictionary[item]+"x");
+                inventoryScreen.SetActive(true);
+                gameIsPaused = true;
+                foreach (string item in inventoryDictionary.Keys)
+                {
+                    inventoryText.GetComponent<Text>().text += inventoryDictionary[item] + "x " + item + "\n";
+                    Debug.Log(item + inventoryDictionary[item] + "x");
+                }
+                Time.timeScale = 0f;
+            }
+            else
+            {
+                inventoryScreen.SetActive(false);
+                gameIsPaused = false;
+                inventoryText.GetComponent<Text>().text = "";
+                Time.timeScale = 1f;
             }
         }
     }
