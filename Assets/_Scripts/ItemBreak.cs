@@ -16,7 +16,7 @@ public class ItemBreak : MonoBehaviour
         switch (this.gameObject.name)
         {
             case "RockNode":
-                drops = Random.Range(2, 4);
+                drops = Random.Range(2, 5);
                 health = 100f;
                 break;
             case "Tree":
@@ -24,7 +24,7 @@ public class ItemBreak : MonoBehaviour
                 health = 70f;
                 break;
             case "CopperNode":
-                drops = Random.Range(1, 4);
+                drops = Random.Range(1, 3);
                 health = 145f;
                 break;
             case "GoldNode":

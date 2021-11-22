@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DroppedItem : MonoBehaviour
 {
-    string itemName;
+    public string itemName;
     Inventory inventory;
 
     // Start is called before the first frame update
@@ -31,16 +31,6 @@ public class DroppedItem : MonoBehaviour
             default:
                 itemName = "null";
                 break;
-        }
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            /*inventory.inventoryList.Add(itemName);*/
-            Debug.Log("Picked up " + itemName);
-            Destroy(this.gameObject);
         }
     }
 }
